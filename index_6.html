@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPOTPASS — Entradas para los mejores eventos</title>
+<meta name="description" content="Real Madrid, Barcelona, Atlético, Champions League, conciertos y toros. Entradas verificadas. Trato directo por WhatsApp.">
+<style>
+:root{
+  --slate:#1C2027;--slate2:#252B35;--slate3:#2E3542;--sl:#3D4558;
+  --border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.14);
+  --red:#E8341A;--red2:#C02810;--gold:#C9A84C;--gold2:#F0D080;
+  --white:#FFFFFF;--grey:#8A94A8;--light:#C4CAD8;
+  --ds:'Georgia','Times New Roman',serif;
+  --db:'Helvetica Neue',Arial,sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--db);background:var(--slate);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.7;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:62px;background:rgba(28,32,39,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-logo{display:flex;align-items:center;gap:8px;text-decoration:none;}
+.nav-logo-text{font-size:16px;font-weight:900;letter-spacing:-0.02em;color:var(--white);}
+.nav-logo-text span{color:var(--red);}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--grey);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--white);}
+.nav-right{display:flex;align-items:center;gap:14px;}
+.lang-wrap{display:flex;align-items:center;gap:2px;}
+.lb{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);background:transparent;border:none;cursor:pointer;padding:4px 6px;font-family:inherit;transition:color .15s;}
+.lb.active,.lb:hover{color:var(--white);}
+.lsep{color:var(--sl);font-size:10px;}
+.nav-cta{background:var(--red);color:#fff;padding:9px 20px;border-radius:3px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:background .2s;white-space:nowrap;}
+.nav-cta:hover{background:var(--red2);}
+@media(max-width:768px){nav{padding:0 18px;}.nav-links{display:none;}.lang-wrap{display:none;}}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 48px 80px;position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 65% 25%, rgba(201,168,76,.07) 0%, transparent 55%),radial-gradient(ellipse at 20% 75%, rgba(232,52,26,.05) 0%, transparent 50%),linear-gradient(158deg,#1C2027 0%,#252B35 45%,#1A1F28 100%);z-index:0;}
+.hero-lines{position:absolute;inset:0;z-index:0;overflow:hidden;}
+.hero-lines::before{content:'';position:absolute;top:12%;right:-8%;width:58%;height:75%;border:1px solid rgba(255,255,255,.035);border-radius:2px;transform:rotate(-2.5deg);}
+.hero-lines::after{content:'';position:absolute;top:18%;right:0%;width:44%;height:58%;border:1px solid rgba(201,168,76,.07);border-radius:2px;transform:rotate(-.8deg);}
+.hero-content{position:relative;z-index:2;max-width:800px;}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;}
+.hero-eyebrow::before{content:'';display:inline-block;width:26px;height:1px;background:var(--gold);}
+.hero h1{font-family:var(--ds);font-size:clamp(46px,7.5vw,100px);font-weight:400;line-height:.98;letter-spacing:-.02em;color:var(--white);margin-bottom:22px;}
+.hero h1 em{font-style:italic;color:var(--gold);}
+.hero-sub{font-size:clamp(14px,1.6vw,17px);color:var(--light);line-height:1.7;max-width:500px;margin-bottom:38px;}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.btn-p{display:inline-flex;align-items:center;gap:9px;background:var(--red);color:#fff;padding:14px 30px;border-radius:3px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:background .2s;}
+.btn-p:hover{background:var(--red2);}
+.btn-s{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border2);color:var(--light);padding:14px 26px;border-radius:3px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:all .2s;}
+.btn-s:hover{border-color:var(--gold);color:var(--gold);}
+.hero-scroll{position:absolute;bottom:30px;right:48px;display:flex;align-items:center;gap:8px;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--grey);z-index:2;animation:bo 2s ease-in-out infinite;}
+@keyframes bo{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+@media(max-width:600px){.hero{padding:0 18px 64px;}.hero-scroll{right:18px;}}
+
+/* TICKER */
+.tw{overflow:hidden;background:var(--gold);padding:10px 0;position:relative;z-index:1;}
+.tk{display:inline-block;white-space:nowrap;animation:tk 32s linear infinite;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--slate);}
+.ts{margin:0 22px;opacity:.35;}
+@keyframes tk{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* SECTIONS */
+section{padding:88px 48px;border-bottom:1px solid var(--border);position:relative;z-index:1;}
+@media(max-width:600px){section{padding:60px 18px;}}
+.se{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:13px;display:flex;align-items:center;gap:10px;}
+.se::before{content:'';display:inline-block;width:17px;height:1px;background:var(--gold);}
+.sh2{font-family:var(--ds);font-size:clamp(28px,4.2vw,54px);font-weight:400;letter-spacing:-.02em;line-height:1.08;margin-bottom:10px;}
+.sh2 em{font-style:italic;color:var(--gold);}
+.ssub{font-size:13px;color:var(--grey);line-height:1.7;max-width:460px;margin-bottom:44px;}
+
+/* EVENTS */
+.cat-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--light);margin:32px 0 14px;padding-left:2px;display:flex;align-items:center;gap:10px;}
+.cat-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.eg{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-bottom:4px;}
+@media(max-width:640px){.eg{grid-template-columns:1fr;}}
+
+.ec{aspect-ratio:4/5;position:relative;overflow:hidden;cursor:pointer;background:var(--slate2);transition:transform .4s cubic-bezier(.25,.46,.45,.94);}
+.ec:hover{transform:scale(1.01);z-index:2;}
+.ec:hover .eco{opacity:1;}
+.ec:hover .ecc{transform:translateY(0);}
+.ec:hover .eci{transform:scale(1.06);}
+.eci{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .6s cubic-bezier(.25,.46,.45,.94);}
+.ecg{position:absolute;inset:0;background:linear-gradient(to top,rgba(16,20,26,.94) 0%,rgba(16,20,26,.25) 55%,transparent 100%);z-index:1;}
+.eco{position:absolute;inset:0;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.25);opacity:0;z-index:2;transition:opacity .3s;}
+.ecb{position:absolute;top:16px;left:16px;z-index:3;font-size:8px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;padding:4px 9px;border-radius:2px;}
+.bf{background:rgba(232,52,26,.88);color:#fff;}
+.bc{background:rgba(124,58,237,.88);color:#fff;}
+.bb{background:rgba(201,168,76,.9);color:#000;}
+.bt{background:rgba(22,163,74,.88);color:#fff;}
+.vb{position:absolute;top:16px;right:16px;z-index:3;font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 9px;border-radius:2px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);color:var(--gold);}
+.ecc{position:absolute;bottom:0;left:0;right:0;padding:22px 20px;z-index:3;transform:translateY(6px);transition:transform .3s;}
+.eccat{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.ect{font-family:var(--ds);font-size:clamp(17px,2.3vw,26px);font-weight:400;line-height:1.18;color:var(--white);margin-bottom:7px;}
+.ecm{font-size:10px;color:var(--light);display:flex;gap:12px;flex-wrap:wrap;margin-bottom:10px;}
+.ecta{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:5px;}
+/* ticket type pills */
+.pills{display:flex;gap:5px;margin-top:6px;}
+.pill{font-size:8px;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:100px;border:1px solid rgba(255,255,255,.15);color:var(--light);}
+.pill.vipp{border-color:rgba(201,168,76,.4);color:var(--gold);}
+
+/* HOW */
+.hw{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+@media(max-width:700px){.hw{grid-template-columns:1fr;}}
+.hs{background:var(--slate2);padding:38px 32px;border-top:1px solid var(--border);}
+.hn{font-family:var(--ds);font-size:60px;font-weight:400;color:rgba(201,168,76,.1);letter-spacing:-.04em;line-height:1;margin-bottom:18px;}
+.hs h3{font-family:var(--ds);font-size:17px;font-weight:400;margin-bottom:8px;line-height:1.3;}
+.hs p{font-size:12px;color:var(--grey);line-height:1.75;}
+
+/* REVIEWS */
+.rh{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:36px;flex-wrap:wrap;}
+.rg{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:28px;}
+@media(max-width:900px){.rg{grid-template-columns:1fr 1fr;}}
+@media(max-width:520px){.rg{grid-template-columns:1fr;}}
+.rc{background:var(--slate2);padding:26px;border-top:2px solid transparent;transition:border-color .2s;}
+.rc:hover{border-top-color:var(--gold);}
+.rs{display:flex;gap:2px;margin-bottom:12px;}
+.star{color:var(--gold);font-size:13px;}
+.rt{font-family:var(--ds);font-size:14px;font-style:italic;line-height:1.7;color:var(--light);margin-bottom:18px;}
+.ra{display:flex;align-items:center;gap:10px;}
+.rav{width:34px;height:34px;border-radius:50%;background:var(--slate3);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--gold);flex-shrink:0;}
+.rn{font-size:11px;font-weight:700;color:var(--white);}
+.re{font-size:9px;color:var(--grey);margin-top:1px;}
+.rv{position:absolute;top:18px;right:18px;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:#16A34A;}
+.rc{position:relative;}
+
+/* REVIEW FORM */
+.arf{background:var(--slate2);border:1px dashed var(--border2);padding:30px;border-radius:3px;}
+.arf h3{font-family:var(--ds);font-size:19px;font-weight:400;margin-bottom:5px;}
+.arf p{font-size:12px;color:var(--grey);margin-bottom:22px;}
+.rform{display:flex;flex-direction:column;gap:10px;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:520px){.frow{grid-template-columns:1fr;}}
+.ri{background:var(--slate3);border:1px solid var(--border2);color:var(--white);font-family:var(--db);font-size:12px;padding:11px 14px;border-radius:3px;outline:none;transition:border-color .2s;width:100%;}
+.ri:focus{border-color:var(--gold);}
+.ri::placeholder{color:var(--grey);}
+textarea.ri{resize:vertical;min-height:80px;}
+.ssl{display:flex;gap:5px;margin-bottom:2px;}
+.ssl span{font-size:20px;cursor:pointer;color:var(--sl);transition:color .15s;}
+.ssl span.lit{color:var(--gold);}
+.slbl{font-size:9px;color:var(--grey);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;}
+.bsub{background:var(--gold);color:var(--slate);padding:12px 26px;border:none;border-radius:3px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-family:var(--db);transition:background .2s;align-self:flex-start;}
+.bsub:hover{background:var(--gold2);}
+
+/* CTA */
+.ctasec{padding:110px 48px;text-align:center;background:radial-gradient(ellipse at center,rgba(201,168,76,.055) 0%,transparent 65%),var(--slate);border-bottom:none;}
+.ctasec h2{font-family:var(--ds);font-size:clamp(30px,5.5vw,70px);font-weight:400;letter-spacing:-.02em;line-height:1.08;margin-bottom:16px;}
+.ctasec h2 em{font-style:italic;color:var(--gold);}
+.ctasec p{font-size:14px;color:var(--grey);max-width:420px;margin:0 auto 36px;line-height:1.7;}
+@media(max-width:600px){.ctasec{padding:80px 18px;}}
+
+/* FOOTER */
+footer{padding:26px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;border-top:1px solid var(--border);background:var(--slate);position:relative;z-index:1;}
+.fl{font-size:13px;font-weight:900;letter-spacing:-.02em;color:var(--white);}
+.fl span{color:var(--red);}
+.flinks{display:flex;gap:22px;}
+.flinks a{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);text-decoration:none;transition:color .15s;}
+.flinks a:hover{color:var(--white);}
+.fc{font-size:10px;color:var(--grey);}
+@media(max-width:560px){footer{padding:22px 18px;flex-direction:column;text-align:center;}.flinks{justify-content:center;}}
+
+/* WA FLOAT */
+.waf{position:fixed;bottom:26px;right:26px;z-index:200;width:54px;height:54px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 22px rgba(37,211,102,.4);text-decoration:none;transition:transform .2s,box-shadow .2s;}
+.waf:hover{transform:scale(1.08);box-shadow:0 6px 30px rgba(37,211,102,.5);}
+.waf svg{width:27px;height:27px;fill:#fff;}
+
+/* MODAL */
+.mo{display:none;position:fixed;inset:0;background:rgba(12,15,20,.92);backdrop-filter:blur(10px);z-index:500;align-items:center;justify-content:center;padding:18px;}
+.mo.open{display:flex;}
+.md{background:var(--slate2);border:1px solid var(--border2);border-radius:4px;width:100%;max-width:660px;max-height:90vh;overflow-y:auto;position:relative;animation:mdin .25s cubic-bezier(.25,.46,.45,.94);}
+@keyframes mdin{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.mh{height:220px;position:relative;overflow:hidden;background-size:cover;background-position:center;}
+.mh::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,var(--slate2) 0%,transparent 55%);}
+.mc{position:absolute;top:14px;right:14px;z-index:10;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.2);color:var(--white);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;}
+.mc:hover{background:rgba(0,0,0,.8);}
+.mb{padding:28px;}
+.mey{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.mt{font-family:var(--ds);font-size:clamp(20px,4vw,34px);font-weight:400;line-height:1.15;margin-bottom:18px;}
+.mds{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px;}
+@media(max-width:460px){.mds{grid-template-columns:1fr;}}
+.mdi{background:var(--slate3);border:1px solid var(--border);border-radius:3px;padding:12px 14px;}
+.mdl{font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);margin-bottom:3px;}
+.mdv{font-size:12px;font-weight:600;color:var(--white);}
+.mdesc{font-size:12px;color:var(--light);line-height:1.8;margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+.mctat{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);margin-bottom:10px;}
+.wab{display:flex;align-items:center;justify-content:center;gap:11px;background:#25D366;color:#fff;padding:15px 30px;border-radius:3px;font-size:12px;font-weight:700;letter-spacing:.06em;text-decoration:none;transition:background .2s;margin-bottom:10px;}
+.wab:hover{background:#1DA851;}
+.mn{font-size:10px;color:var(--grey);text-align:center;line-height:1.6;}
+
+/* FADE */
+.fu{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
+.fu.vis{opacity:1;transform:translateY(0);}
+
+/* LANG */
+.es-t{display:block;}.en-t{display:none;}
+body.en .es-t{display:none;}body.en .en-t{display:block;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <svg width="15" height="19" viewBox="0 0 58 70" fill="none"><circle cx="29" cy="24" r="18" fill="#E8341A"/><circle cx="29" cy="24" r="7" fill="#1C2027"/><path d="M29 42 L20 62 L29 54 L38 62 Z" fill="#E8341A"/></svg>
+    <span class="nav-logo-text">SPOT<span>PASS</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#eventos">Eventos</a></li>
+    <li><a href="#como-funciona">Cómo funciona</a></li>
+    <li><a href="#resenas">Reseñas</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-wrap">
+      <button class="lb active" onclick="setLang('es')" id="bes">ES</button>
+      <span class="lsep">·</span>
+      <button class="lb" onclick="setLang('en')" id="ben">EN</button>
+    </div>
+    <a href="https://wa.me/34689251503" class="nav-cta">
+      <span class="es-t">Contactar</span><span class="en-t">Contact</span>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-content fu">
+    <div class="hero-eyebrow es-t">Acceso exclusivo · España & Europa</div>
+    <div class="hero-eyebrow en-t">Exclusive access · Spain & Europe</div>
+    <h1 class="es-t">Tu entrada<br>para lo que<br><em>todos quieren.</em></h1>
+    <h1 class="en-t">Your ticket<br>to what<br><em>everyone wants.</em></h1>
+    <p class="hero-sub es-t">Real Madrid, Barcelona, Atlético, Champions League, conciertos y toros. Entradas verificadas. Trato directo, entrega garantizada.</p>
+    <p class="hero-sub en-t">Real Madrid, Barcelona, Atlético, Champions League, concerts and bullfighting. Verified tickets. Direct contact, guaranteed delivery.</p>
+    <div class="hero-actions">
+      <a href="#eventos" class="btn-p">
+        <span class="es-t">Ver eventos</span><span class="en-t">See events</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="https://wa.me/34689251503" class="btn-s">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.532 5.847L.057 23.491c-.073.273.007.563.207.76.14.137.327.209.516.209.082 0 .165-.013.245-.04l5.789-1.878C8.453 23.494 10.189 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.72 0-3.37-.445-4.8-1.29l-.344-.201-3.568 1.157 1.1-3.487-.222-.358C3.434 16.461 2 14.311 2 12 2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span class="es-t">Explorar</span><span class="en-t">Explore</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></div>
+</div>
+
+<!-- TICKER -->
+<div class="tw"><div class="tk">Real Madrid · Santiago Bernabéu<span class="ts">·</span>FC Barcelona · Camp Nou<span class="ts">·</span>Atlético de Madrid · Wanda<span class="ts">·</span>Champions League · Europa<span class="ts">·</span>Corrida Las Ventas<span class="ts">·</span>Conciertos Agotados<span class="ts">·</span>Palcos VIP<span class="ts">·</span>QR Verificado · Garantía Total<span class="ts">·</span>Real Madrid · Santiago Bernabéu<span class="ts">·</span>FC Barcelona · Camp Nou<span class="ts">·</span>Atlético de Madrid · Wanda<span class="ts">·</span>Champions League · Europa<span class="ts">·</span>Corrida Las Ventas<span class="ts">·</span>Conciertos Agotados<span class="ts">·</span>Palcos VIP<span class="ts">·</span>QR Verificado · Garantía Total<span class="ts">·</span></div></div>
+
+<!-- EVENTS -->
+<section id="eventos">
+  <div class="se fu es-t">Eventos disponibles</div>
+  <div class="se fu en-t">Available events</div>
+  <h2 class="sh2 fu es-t">Los que todos<br>quieren. Nosotros<br><em>los conseguimos.</em></h2>
+  <h2 class="sh2 fu en-t">The ones everyone<br>wants. We<br><em>get them.</em></h2>
+  <p class="ssub fu es-t">Pincha en cualquier evento para ver disponibilidad y contactarnos directamente por WhatsApp.</p>
+  <p class="ssub fu en-t">Click any event to check availability and contact us directly on WhatsApp.</p>
+
+  <!-- ⚽ FÚTBOL -->
+  <div class="cat-label fu es-t">⚽ Fútbol</div>
+  <div class="cat-label fu en-t">⚽ Football</div>
+  <div class="eg" style="grid-template-columns:repeat(3,1fr);" id="football-grid">
+
+    <!-- REAL MADRID -->
+    <div class="ec fu" onclick="openEvent('realmadrid')">
+      <div class="eci" style="background-image:url('https://images.pexels.com/photos/33845032/pexels-photo-33845032.jpeg?auto=compress&cs=tinysrgb&w=800');background-position:center top;"></div>
+      <div class="ecg"></div><div class="eco"></div>
+      <span class="ecb bf">⚽ Real Madrid</span>
+      <span class="vb">General · VIP</span>
+      <div class="ecc">
+        <div class="eccat es-t">Santiago Bernabéu · Madrid</div>
+        <div class="eccat en-t">Santiago Bernabéu · Madrid</div>
+        <div class="ect">Real Madrid</div>
+        <div class="ecm"><span>🏟 Bernabéu</span><span>📍 Madrid</span></div>
+        <div class="pills"><span class="pill">Entrada general</span><span class="pill vipp">Palco VIP</span></div>
+        <div class="ecta es-t">Ver disponibilidad →</div>
+        <div class="ecta en-t">Check availability →</div>
+      </div>
+    </div>
+
+    <!-- BARCELONA -->
+    <div class="ec fu" onclick="openEvent('barcelona')">
+      <div class="eci" style="background-image:url('https://images.pexels.com/photos/16428930/pexels-photo-16428930.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+      <div class="ecg"></div><div class="eco"></div>
+      <span class="ecb bf">⚽ FC Barcelona</span>
+      <span class="vb">General · VIP</span>
+      <div class="ecc">
+        <div class="eccat es-t">Camp Nou · Barcelona</div>
+        <div class="eccat en-t">Camp Nou · Barcelona</div>
+        <div class="ect">FC Barcelona</div>
+        <div class="ecm"><span>🏟 Camp Nou</span><span>📍 Barcelona</span></div>
+        <div class="pills"><span class="pill">Entrada general</span><span class="pill vipp">Palco VIP</span></div>
+        <div class="ecta es-t">Ver disponibilidad →</div>
+        <div class="ecta en-t">Check availability →</div>
+      </div>
+    </div>
+
+    <!-- ATLETICO -->
+    <div class="ec fu" onclick="openEvent('atletico')">
+      <div class="eci" style="background-image:url('https://images.pexels.com/photos/3991976/pexels-photo-3991976.jpeg?auto=compress&cs=tinysrgb&w=800');background-position:center;"></div>
+      <div class="ecg"></div><div class="eco"></div>
+      <span class="ecb bf">⚽ Atlético Madrid</span>
+      <span class="vb">General · VIP</span>
+      <div class="ecc">
+        <div class="eccat es-t">Wanda Metropolitano · Madrid</div>
+        <div class="eccat en-t">Wanda Metropolitano · Madrid</div>
+        <div class="ect">Atlético<br>de Madrid</div>
+        <div class="ecm"><span>🏟 Wanda</span><span>📍 Madrid</span></div>
+        <div class="pills"><span class="pill">Entrada general</span><span class="pill vipp">Palco VIP</span></div>
+        <div class="ecta es-t">Ver disponibilidad →</div>
+        <div class="ecta en-t">Check availability →</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🏆 CHAMPIONS -->
+  <div class="cat-label fu">🏆 Champions League & Competiciones Europeas</div>
+  <div class="eg" style="grid-template-columns:1fr 1fr;">
+    <div class="ec fu" onclick="openEvent('champions')">
+      <div class="eci" style="background-image:url('https://images.pexels.com/photos/1884574/pexels-photo-1884574.jpeg?auto=compress&cs=tinysrgb&w=800');background-position:center;"></div>
+      <div class="ecg"></div><div class="eco"></div>
+      <span class="ecb" style="background:rgba(59,130,246,.88);color:#fff;">🏆 Champions League</span>
+      <span class="vb">General · VIP</span>
+      <div class="ecc">
+        <div class="eccat es-t">UEFA Champions League · Todas las fases</div>
+        <div class="eccat en-t">UEFA Champions League · All rounds</div>
+        <div class="ect">Champions<br>League</div>
+        <div class="ecm"><span>🌍 Europa</span><span>🏟 Todos los estadios</span></div>
+        <div class="pills"><span class="pill">Fase grupos</span><span class="pill">Eliminatorias</span><span class="pill vipp">Final</span></div>
+        <div class="ecta es-t">Ver disponibilidad →</div>
+        <div class="ecta en-t">Check availability →</div>
+      </div>
+    </div>
+    <div class="ec fu" onclick="openEvent('europa')">
+      <div class="eci" style="background-image:url('https://images.pexels.com/photos/46798/the-ball-stadion-football-the-pitch-46798.jpeg?auto=compress&cs=tinysrgb&w=800');background-position:center;"></div>
+      <div class="ecg"></div><div class="eco"></div>
+      <span class="ecb" style="background:rgba(234,179,8,.9);color:#000;">🌍 Europa League & otras</span>
+      <span class="vb">General · VIP</span>
+      <div class="ecc">
+        <div class="eccat es-t">Europa League · Conference · Selecciones</div>
+        <div class="eccat en-t">Europa League · Conference · National teams</div>
+        <div class="ect">Competiciones<br>Europeas</div>
+        <div class="ecm"><span>🌍 Europa</span><span>⚽ Todas las competiciones</span></div>
+        <div class="pills"><span class="pill">Europa League</span><span class="pill">Conference</span><span class="pill vipp">VIP</span></div>
+        <div class="ecta es-t">Ver disponibilidad →</div>
+        <div class="ecta en-t">Check availability →</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🎵 CONCIERTOS -->
+  <div class="cat-label fu es-t">🎵 Conciertos</div>
+  <div class="cat-label fu en-t">🎵 Concerts</div>
+  <div class="eg" style="grid-template-columns:1fr;">
+    <div class="ec fu" style="aspect-ratio:21/9;" onclick="openEvent('conciertos')">
+      <div class="eci" style="background-image:url('https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1200');background-position:center 35%;"></div>
+      <div class="ecg"></div><div class="eco"></div>
+      <span class="ecb bc">🎵 Conciertos</span>
+      <span class="vb">Pista · Gradas · VIP</span>
+      <div class="ecc">
+        <div class="eccat es-t">Conciertos agotados en taquilla oficial · España</div>
+        <div class="eccat en-t">Sold-out concerts at official box office · Spain</div>
+        <div class="ect">Conciertos agotados</div>
+        <div class="ecm"><span>🎤 WiZink · Bernabéu · Palau</span><span>📍 Madrid · Barcelona</span></div>
+        <div class="pills"><span class="pill">Pista</span><span class="pill">Gradas</span><span class="pill vipp">VIP · Front Row</span></div>
+        <div class="ecta es-t">Consultar artistas disponibles →</div>
+        <div class="ecta en-t">Check available artists →</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🐂 TOROS -->
+  <div class="cat-label fu es-t">🐂 Toros</div>
+  <div class="cat-label fu en-t">🐂 Bullfighting</div>
+  <div class="eg" style="grid-template-columns:1fr;">
+    <div class="ec fu" style="aspect-ratio:21/9;" onclick="openEvent('toros')">
+      <div class="eci" style="background-image:url('https://images.pexels.com/photos/3094799/pexels-photo-3094799.jpeg?auto=compress&cs=tinysrgb&w=1200');background-position:center;"></div>
+      <div class="ecg"></div><div class="eco"></div>
+      <span class="ecb bb">🐂 Tauromaquia</span>
+      <span class="vb">Sol · Sombra · Palco</span>
+      <div class="ecc">
+        <div class="eccat es-t">Plaza de Toros Las Ventas · Temporada 2026</div>
+        <div class="eccat en-t">Plaza de Toros Las Ventas · Season 2026</div>
+        <div class="ect">Corridas · Las Ventas · San Isidro</div>
+        <div class="ecm"><span>🏟 Las Ventas</span><span>📍 Madrid</span></div>
+        <div class="pills"><span class="pill">Tendido sol</span><span class="pill">Tendido sombra</span><span class="pill vipp">Barrera · Palco</span></div>
+        <div class="ecta es-t">Ver disponibilidad →</div>
+        <div class="ecta en-t">Check availability →</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:20px;">
+    <a href="https://wa.me/34689251503" class="btn-s" style="display:inline-flex;">
+      <span class="es-t">¿Buscas otro evento? Escríbenos →</span>
+      <span class="en-t">Looking for another event? Contact us →</span>
+    </a>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="como-funciona" style="background:var(--slate2);">
+  <div class="se fu es-t">El proceso</div>
+  <div class="se fu en-t">The process</div>
+  <h2 class="sh2 fu es-t">En minutos,<br><em>no en horas.</em></h2>
+  <h2 class="sh2 fu en-t">In minutes,<br><em>not hours.</em></h2>
+  <div class="hw">
+    <div class="hs fu"><div class="hn">01</div><h3 class="es-t">Escríbenos por WhatsApp</h3><h3 class="en-t">Message us on WhatsApp</h3><p class="es-t">Dinos qué evento, cuántas entradas y qué zona quieres. Sin formularios, respuesta inmediata.</p><p class="en-t">Tell us the event, how many tickets and which area. No forms, immediate reply.</p></div>
+    <div class="hs fu"><div class="hn">02</div><h3 class="es-t">Confirmamos disponibilidad</h3><h3 class="en-t">We confirm availability</h3><p class="es-t">Activamos nuestra red verificada y te encontramos el mejor acceso disponible. En minutos.</p><p class="en-t">We activate our verified network and find you the best access available. In minutes.</p></div>
+    <div class="hs fu"><div class="hn">03</div><h3 class="es-t">Recibes el QR y entras</h3><h3 class="en-t">Receive QR and enter</h3><p class="es-t">Pago seguro, QR verificado en tu móvil. Cada entrada garantizada de extremo a extremo.</p><p class="en-t">Secure payment, verified QR on your phone. Every ticket fully guaranteed end to end.</p></div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="resenas">
+  <div class="rh">
+    <div>
+      <div class="se fu es-t">Clientes</div>
+      <div class="se fu en-t">Clients</div>
+      <h2 class="sh2 fu es-t">Lo que dicen<br><em>nuestros clientes.</em></h2>
+      <h2 class="sh2 fu en-t">What our<br><em>clients say.</em></h2>
+    </div>
+    <div style="text-align:right;" class="fu">
+      <div style="font-family:var(--ds);font-size:46px;color:var(--gold);letter-spacing:-.04em;line-height:1;">5.0</div>
+      <div style="display:flex;gap:2px;justify-content:flex-end;margin-top:3px;"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <div style="font-size:9px;color:var(--grey);margin-top:3px;letter-spacing:.08em;" id="rcount">BASADO EN 6 RESEÑAS</div>
+    </div>
+  </div>
+  <div class="rg" id="rcont"></div>
+  <div class="arf fu">
+    <h3 class="es-t">Deja tu reseña</h3><h3 class="en-t">Leave your review</h3>
+    <p class="es-t">¿Has comprado con nosotros? Cuéntanos.</p><p class="en-t">Did you buy from us? Tell us about it.</p>
+    <div class="rform">
+      <div class="slbl es-t">Tu valoración</div><div class="slbl en-t">Your rating</div>
+      <div class="ssl" id="ssl"><span onclick="setS(1)">★</span><span onclick="setS(2)">★</span><span onclick="setS(3)">★</span><span onclick="setS(4)">★</span><span onclick="setS(5)">★</span></div>
+      <div class="frow">
+        <input class="ri" id="rn" placeholder="Tu nombre" type="text">
+        <input class="ri" id="rev" placeholder="¿Qué evento?" type="text">
+      </div>
+      <textarea class="ri" id="rt" placeholder="Cuéntanos tu experiencia..."></textarea>
+      <button class="bsub" onclick="subReview()"><span class="es-t">Publicar reseña</span><span class="en-t">Submit review</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="ctasec">
+  <h2 class="fu es-t">¿Tienes un evento<br>en <em>mente</em>?</h2>
+  <h2 class="fu en-t">Got an event<br><em>in mind</em>?</h2>
+  <p class="fu es-t">Si hay entradas en el mercado, nosotros las conseguimos. Escríbenos y respondemos en minutos.</p>
+  <p class="fu en-t">If there are tickets in the market, we'll get them. Write to us and we reply in minutes.</p>
+  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;" class="fu">
+    <a href="https://wa.me/34689251503" class="wab" style="display:inline-flex;max-width:300px;">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.532 5.847L.057 23.491c-.073.273.007.563.207.76.14.137.327.209.516.209.082 0 .165-.013.245-.04l5.789-1.878C8.453 23.494 10.189 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.72 0-3.37-.445-4.8-1.29l-.344-.201-3.568 1.157 1.1-3.487-.222-.358C3.434 16.461 2 14.311 2 12 2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      <span class="es-t">Escribir por WhatsApp</span><span class="en-t">Message on WhatsApp</span>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <div class="fl">SPOT<span>PASS</span></div>
+  <div class="flinks">
+    <a href="mailto:tickets@myspotpass.es">tickets@myspotpass.es</a>
+    <a href="#eventos" class="es-t">Eventos</a><a href="#eventos" class="en-t">Events</a>
+    <a href="#resenas" class="es-t">Reseñas</a><a href="#resenas" class="en-t">Reviews</a>
+  </div>
+  <div class="fc">© 2026 SPOTPASS · myspotpass.es</div>
+</footer>
+
+<a href="https://wa.me/34689251503" class="waf" title="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.532 5.847L.057 23.491c-.073.273.007.563.207.76.14.137.327.209.516.209.082 0 .165-.013.245-.04l5.789-1.878C8.453 23.494 10.189 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.72 0-3.37-.445-4.8-1.29l-.344-.201-3.568 1.157 1.1-3.487-.222-.358C3.434 16.461 2 14.311 2 12 2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+</a>
+
+<!-- MODAL -->
+<div class="mo" id="modal" onclick="closeM(event)">
+  <div class="md">
+    <div class="mh" id="mh"></div>
+    <button class="mc" onclick="closeEvent()">✕</button>
+    <div class="mb">
+      <div class="mey" id="mey"></div>
+      <div class="mt" id="mt"></div>
+      <div class="mds" id="mds"></div>
+      <div class="mdesc" id="mdesc"></div>
+      <div class="mctat es-t">¿Te interesa? Contáctanos directamente</div>
+      <div class="mctat en-t">Interested? Contact us directly</div>
+      <a href="#" class="wab" id="mwa">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.532 5.847L.057 23.491c-.073.273.007.563.207.76.14.137.327.209.516.209.082 0 .165-.013.245-.04l5.789-1.878C8.453 23.494 10.189 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.72 0-3.37-.445-4.8-1.29l-.344-.201-3.568 1.157 1.1-3.487-.222-.358C3.434 16.461 2 14.311 2 12 2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        <span id="mwat">Consultar por WhatsApp</span>
+      </a>
+      <p class="mn es-t">Respuesta en menos de 15 min · QR verificado garantizado</p>
+      <p class="mn en-t">Reply within 15 min · Verified QR guaranteed</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const WA='34689251503';
+const isEn=()=>document.body.classList.contains('en');
+
+function setLang(l){
+  document.body.classList.toggle('en',l==='en');
+  document.getElementById('bes').classList.toggle('active',l==='es');
+  document.getElementById('ben').classList.toggle('active',l==='en');
+  localStorage.setItem('sp_lang',l);
+}
+if(localStorage.getItem('sp_lang')==='en')setLang('en');
+
+// FADE
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});},{threshold:.08});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+
+// EVENTS DATA
+const EV={
+  realmadrid:{
+    ey:'Real Madrid · Santiago Bernabéu',
+    title:'Real Madrid',
+    img:'https://images.pexels.com/photos/33845032/pexels-photo-33845032.jpeg?auto=compress&cs=tinysrgb&w=800',
+    details:[{l:'Estadio',v:'Santiago Bernabéu'},{l:'Ciudad',v:'Madrid, España'},{l:'Competiciones',v:'La Liga · Champions · Copa del Rey'},{l:'Zonas',v:'Fondos · Lateral · Tribuna · Palco VIP'}],
+    desc:'Acceso a todos los partidos de Real Madrid en el Bernabéu. Liga, Champions, Copa del Rey. Entradas generales en fondos, gradas laterales, tribuna y primer anfiteatro. Palcos y zona VIP Emirates disponibles para eventos especiales. Zona visitante para partidos fuera de casa.',
+    desc_en:'Access to all Real Madrid matches at the Bernabéu. La Liga, Champions, Copa del Rey. General tickets in end zones, lateral stands, tribune and first tier. Boxes and VIP Emirates area available for special events. Away section for away matches.',
+    msg:'Hola, me interesan entradas para Real Madrid. ¿Tenéis disponibilidad?',
+    msg_en:"Hi, I'm interested in Real Madrid tickets. Do you have availability?"
+  },
+  barcelona:{
+    ey:'FC Barcelona · Camp Nou',
+    title:'FC Barcelona',
+    img:'https://images.pexels.com/photos/16428930/pexels-photo-16428930.jpeg?auto=compress&cs=tinysrgb&w=800',
+    details:[{l:'Estadio',v:'Camp Nou'},{l:'Ciudad',v:'Barcelona, España'},{l:'Competiciones',v:'La Liga · Champions · Copa del Rey'},{l:'Zonas',v:'Gradas · Lateral · Tribuna · Palco'}],
+    desc:'Entradas para todos los partidos del FC Barcelona en el Camp Nou. Liga, Champions y Copa. Acceso a todas las zonas: fondos, gradas altas y bajas, lateral, tribuna. Palcos privados para partidos especiales. El Clásico nuestra especialidad.',
+    desc_en:'Tickets for all FC Barcelona matches at Camp Nou. La Liga, Champions and Copa. Access to all areas: end zones, upper and lower tiers, lateral, tribune. Private boxes for special matches. El Clásico our specialty.',
+    msg:'Hola, me interesan entradas para FC Barcelona. ¿Tenéis disponibilidad?',
+    msg_en:"Hi, I'm interested in FC Barcelona tickets. Do you have availability?"
+  },
+  atletico:{
+    ey:'Atlético de Madrid · Wanda Metropolitano',
+    title:'Atlético de Madrid',
+    img:'https://images.pexels.com/photos/3991976/pexels-photo-3991976.jpeg?auto=compress&cs=tinysrgb&w=800',
+    details:[{l:'Estadio',v:'Wanda Metropolitano'},{l:'Ciudad',v:'Madrid, España'},{l:'Competiciones',v:'La Liga · Champions · Copa del Rey'},{l:'Zonas',v:'Fondos · Gradas · Lateral · VIP'}],
+    desc:'Acceso a partidos del Atlético de Madrid en el Wanda Metropolitano. Liga, Champions y Copa del Rey. El derbi madrileño contra Real Madrid siempre disponible. Gradas generales y zonas premium.',
+    desc_en:'Access to Atlético de Madrid matches at Wanda Metropolitano. La Liga, Champions and Copa del Rey. The Madrid derby against Real Madrid always available. General stands and premium areas.',
+    msg:'Hola, me interesan entradas para Atlético de Madrid. ¿Tenéis disponibilidad?',
+    msg_en:"Hi, I'm interested in Atlético de Madrid tickets. Do you have availability?"
+  },
+  champions:{
+    ey:'UEFA Champions League',
+    title:'Champions League',
+    img:'https://images.pexels.com/photos/1884574/pexels-photo-1884574.jpeg?auto=compress&cs=tinysrgb&w=800',
+    details:[{l:'Competición',v:'UEFA Champions League'},{l:'Fases',v:'Fase grupos · 1/8 · 1/4 · Semi · Final'},{l:'Estadios',v:'Todos los estadios de Europa'},{l:'Zonas',v:'Todas · Zona visitante especialidad'}],
+    desc:'Los partidos más difíciles de conseguir del fútbol europeo. Operamos en todos los estadios — Bernabéu, Allianz Arena, Anfield, Etihad, San Siro. Fase de grupos, eliminatorias y final. La zona visitante en partidos de equipos españoles fuera de casa es nuestra especialidad.',
+    desc_en:'The hardest tickets to find in European football. We operate across all stadiums — Bernabéu, Allianz Arena, Anfield, Etihad, San Siro. Group stage, knockouts and final. Away sections for Spanish teams playing away from home is our specialty.',
+    msg:'Hola, busco entradas para Champions League. ¿Podéis ayudarme?',
+    msg_en:"Hi, I'm looking for Champions League tickets. Can you help me?"
+  },
+  europa:{
+    ey:'Europa League & Competiciones Europeas',
+    title:'Europa League & otras competiciones',
+    img:'https://images.pexels.com/photos/46798/the-ball-stadion-football-the-pitch-46798.jpeg?auto=compress&cs=tinysrgb&w=800',
+    details:[{l:'Competiciones',v:'Europa League · Conference League'},{l:'También',v:'Selección española · Amistosos'},{l:'Estadios',v:'Europa & España'},{l:'Zonas',v:'General · VIP · Visitante'}],
+    desc:'Más allá de la Champions. Europa League, Conference League y partidos de la Selección Española. También cubrimos amistosos internacionales y torneos de verano. Consulta disponibilidad para cualquier partido.',
+    desc_en:'Beyond the Champions. Europa League, Conference League and Spanish national team matches. We also cover international friendlies and summer tournaments. Ask about availability for any match.',
+    msg:'Hola, busco entradas para Europa League u otras competiciones. ¿Podéis ayudarme?',
+    msg_en:"Hi, I'm looking for Europa League or other competition tickets. Can you help?"
+  },
+  conciertos:{
+    ey:'Conciertos · Agotados en taquilla oficial',
+    title:'Conciertos agotados',
+    img:'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=800',
+    details:[{l:'Recintos',v:'WiZink · Bernabéu · Palau Sant Jordi'},{l:'Ciudades',v:'Madrid · Barcelona · Valencia'},{l:'Zonas',v:'Pista · Gradas · VIP · Front Row'},{l:'Artistas',v:'Consultar disponibilidad'}],
+    desc:'Conciertos agotados en taquilla oficial. Pista, gradas y zonas VIP o front row. Operamos en todos los grandes recintos de España. Quevedo, Bad Bunny, Coldplay, Rosalía y muchos más. Consulta por tu artista favorito.',
+    desc_en:'Sold-out concerts at official box office. Floor, stands and VIP or front row areas. We operate across all major venues in Spain. Quevedo, Bad Bunny, Coldplay, Rosalía and many more. Ask about your favourite artist.',
+    msg:'Hola, busco entradas para un concierto agotado. ¿Podéis ayudarme?',
+    msg_en:"Hi, I'm looking for sold-out concert tickets. Can you help me?"
+  },
+  toros:{
+    ey:'Tauromaquia · Plaza de Toros Las Ventas',
+    title:'Corridas · Las Ventas · San Isidro',
+    img:'https://images.pexels.com/photos/30729327/pexels-photo-30729327.jpeg?auto=compress&cs=tinysrgb&w=800',
+    details:[{l:'Plaza',v:'Las Ventas · Madrid'},{l:'Temporada',v:'Mayo — Octubre 2026'},{l:'Evento especial',v:'Feria de San Isidro'},{l:'Zonas',v:'Sol · Sombra · Barrera · Palco'}],
+    desc:'La plaza de toros más importante del mundo. Acceso a todas las corridas de la temporada, incluyendo la Feria de San Isidro — el evento más difícil de conseguir. Tendidos de sol y sombra, barreras y palcos. El espectáculo más auténtico de Madrid.',
+    desc_en:"The world's most important bullring. Access to all season bullfights, including the San Isidro Fair — the hardest tickets to find. Sun and shade stands, barriers and boxes. Madrid's most authentic spectacle.",
+    msg:'Hola, me interesan entradas para Las Ventas. ¿Tenéis disponibilidad?',
+    msg_en:"Hi, I'm interested in Las Ventas tickets. Do you have availability?"
+  }
+};
+
+function openEvent(id){
+  const e=EV[id];
+  const en=isEn();
+  document.getElementById('mh').style.backgroundImage=`url('${e.img}')`;
+  document.getElementById('mh').style.backgroundSize='cover';
+  document.getElementById('mh').style.backgroundPosition='center';
+  document.getElementById('mey').textContent=e.ey;
+  document.getElementById('mt').textContent=e.title;
+  document.getElementById('mds').innerHTML=e.details.map(d=>`<div class="mdi"><div class="mdl">${d.l}</div><div class="mdv">${d.v}</div></div>`).join('');
+  document.getElementById('mdesc').textContent=en&&e.desc_en?e.desc_en:e.desc;
+  const msg=en&&e.msg_en?e.msg_en:e.msg;
+  document.getElementById('mwa').href=`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
+  document.getElementById('mwat').textContent=en?'Ask on WhatsApp':'Consultar por WhatsApp';
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeEvent(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
+function closeM(e){if(e.target===document.getElementById('modal'))closeEvent();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeEvent();});
+
+// REVIEWS
+const seed=[
+  {name:'Carlos M.',event:'El Clásico · Bernabéu',stars:5,text:'"Conseguí entradas para El Clásico cuando en ningún sitio quedaban. El QR funcionó perfecto. Totalmente recomendable."',ini:'CM'},
+  {name:'Sarah K.',event:'Champions League',stars:5,text:'"Got tickets for the Champions semifinal in Munich. Fast, verified QR, no problems at the gate. Will use again."',ini:'SK'},
+  {name:'Javier R.',event:'Quevedo · WiZink',stars:5,text:'"Concierto agotado desde semanas y los tuve en 2 horas. Proceso muy sencillo y trato excelente."',ini:'JR'},
+  {name:'Marco B.',event:'Palco VIP · Bernabéu',stars:5,text:'"Palco privado para el derbi. Todo como prometido. Servicio de otro nivel."',ini:'MB'},
+  {name:'Ana G.',event:'Las Ventas · San Isidro',stars:5,text:'"Tendido sombra para San Isidro. Imposible de encontrar en otro sitio. Rápido y seguro."',ini:'AG'},
+  {name:'Thomas L.',event:'Roland Garros',stars:5,text:'"Tickets for the Roland Garros final in 24 hours. Everything perfect. Highly professional."',ini:'TL'},
+];
+let reviews=JSON.parse(localStorage.getItem('sp_rev')||JSON.stringify(seed));
+let selS=5;
+
+function renderR(){
+  document.getElementById('rcont').innerHTML=reviews.map(r=>`
+    <div class="rc fu">
+      <div class="rv">✓ Verificado</div>
+      <div class="rs">${'<span class="star">★</span>'.repeat(r.stars)}</div>
+      <div class="rt">${r.text}</div>
+      <div class="ra"><div class="rav">${r.ini||r.name.slice(0,2).toUpperCase()}</div><div><div class="rn">${r.name}</div><div class="re">${r.event}</div></div></div>
+    </div>`).join('');
+  document.getElementById('rcount').textContent=`BASADO EN ${reviews.length} RESEÑAS`;
+  document.querySelectorAll('.rc.fu:not(.vis)').forEach(el=>obs.observe(el));
+}
+
+function setS(n){selS=n;document.querySelectorAll('#ssl span').forEach((s,i)=>s.classList.toggle('lit',i<n));}
+setS(5);
+
+function subReview(){
+  const name=document.getElementById('rn').value.trim();
+  const text=document.getElementById('rt').value.trim();
+  if(!name||!text){alert('Por favor rellena tu nombre y la reseña.');return;}
+  const ev=document.getElementById('rev').value.trim();
+  reviews.unshift({name,event:ev||'Evento SPOTPASS',stars:selS,text:`"${text}"`,ini:name.slice(0,2).toUpperCase()});
+  localStorage.setItem('sp_rev',JSON.stringify(reviews));
+  renderR();
+  document.getElementById('rn').value='';document.getElementById('rev').value='';document.getElementById('rt').value='';setS(5);
+  document.getElementById('resenas').scrollIntoView({behavior:'smooth'});
+}
+renderR();
+</script>
+</body>
+</html>
