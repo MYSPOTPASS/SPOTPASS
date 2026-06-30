@@ -34,7 +34,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .lsep{color:var(--sl);font-size:10px;}
 .nav-cta{background:var(--red);color:#fff;padding:9px 20px;border-radius:3px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:background .2s;white-space:nowrap;}
 .nav-cta:hover{background:var(--red2);}
-@media(max-width:768px){nav{padding:0 18px;}.nav-links{display:none;}.lang-wrap{display:none;}}
+@media(max-width:768px){
+  nav{padding:0 14px;height:54px;}
+  .nav-links{display:none;}
+  .lang-wrap{display:none;}
+  .nav-logo-text{font-size:14px;}
+  .nav-cta{padding:8px 14px;font-size:10px;}
+}
 
 /* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 48px 80px;position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
@@ -55,7 +61,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .btn-s:hover{border-color:var(--gold);color:var(--gold);}
 .hero-scroll{position:absolute;bottom:30px;right:48px;display:flex;align-items:center;gap:8px;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--grey);z-index:2;animation:bo 2s ease-in-out infinite;}
 @keyframes bo{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
-@media(max-width:600px){.hero{padding:0 18px 64px;}.hero-scroll{right:18px;}}
+@media(max-width:600px){
+  .hero{padding:0 14px 60px;}
+  .hero-scroll{right:14px;}
+  .hero-actions{gap:8px;}
+  .btn-p,.btn-s{padding:12px 18px;font-size:10px;}
+}
 
 /* TICKER */
 .tw{overflow:hidden;background:var(--gold);padding:10px 0;position:relative;z-index:1;}
@@ -65,7 +76,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 
 /* SECTIONS */
 section{padding:88px 48px;border-bottom:1px solid var(--border);position:relative;z-index:1;}
-@media(max-width:600px){section{padding:60px 18px;}}
+@media(max-width:600px){section{padding:48px 14px;}}
 .se{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:13px;display:flex;align-items:center;gap:10px;}
 .se::before{content:'';display:inline-block;width:17px;height:1px;background:var(--gold);}
 .sh2{font-family:var(--ds);font-size:clamp(28px,4.2vw,54px);font-weight:400;letter-spacing:-.02em;line-height:1.08;margin-bottom:10px;}
@@ -76,7 +87,23 @@ section{padding:88px 48px;border-bottom:1px solid var(--border);position:relativ
 .cat-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--light);margin:32px 0 14px;padding-left:2px;display:flex;align-items:center;gap:10px;}
 .cat-label::after{content:'';flex:1;height:1px;background:var(--border);}
 .eg{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-bottom:4px;}
-@media(max-width:640px){.eg{grid-template-columns:1fr;}}
+@media(max-width:640px){
+  .eg{grid-template-columns:1fr !important;}
+  .ec{aspect-ratio:3/2;}
+  .ecb{font-size:7px;padding:3px 7px;}
+  .vb{font-size:7px;padding:3px 7px;top:12px;right:12px;}
+  .ect{font-size:16px !important;}
+  .eccat{font-size:8px;}
+  .ecm{font-size:9px;gap:8px;}
+  .pills{gap:3px;}
+  .pill{font-size:7px;padding:2px 6px;}
+  .ecta{font-size:9px;}
+  .ecc{padding:16px 14px;}
+  .cat-label{font-size:10px;}
+}
+@media(max-width:480px){
+  .ec{aspect-ratio:4/3;}
+}
 
 .ec{aspect-ratio:4/5;position:relative;overflow:hidden;cursor:pointer;background:var(--slate2);transition:transform .4s cubic-bezier(.25,.46,.45,.94);}
 .ec:hover{transform:scale(1.01);z-index:2;}
@@ -197,6 +224,10 @@ footer{padding:26px 48px;display:flex;align-items:center;justify-content:space-b
 /* LANG */
 .es-t{display:block;}.en-t{display:none;}
 body.en .es-t{display:none;}body.en .en-t{display:block;}
+
+@media(max-width:768px){
+  #football-grid{grid-template-columns:1fr !important;}
+}
 </style>
 </head>
 <body>
@@ -263,7 +294,7 @@ body.en .es-t{display:none;}body.en .en-t{display:block;}
   <!-- ⚽ FÚTBOL -->
   <div class="cat-label fu es-t">⚽ Fútbol</div>
   <div class="cat-label fu en-t">⚽ Football</div>
-  <div class="eg" style="grid-template-columns:repeat(3,1fr);" id="football-grid">
+  <div class="eg" id="football-grid" style="grid-template-columns:repeat(3,1fr);" data-mobile="1">
 
     <!-- REAL MADRID -->
     <div class="ec fu" onclick="openEvent('realmadrid')">
@@ -578,7 +609,7 @@ const EV={
   toros:{
     ey:'Tauromaquia · Plaza de Toros Las Ventas',
     title:'Corridas · Las Ventas · San Isidro',
-    img:'https://images.pexels.com/photos/30729327/pexels-photo-30729327.jpeg?auto=compress&cs=tinysrgb&w=800',
+    img:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Corrida_de_toros.jpg/1280px-Corrida_de_toros.jpg',
     details:[{l:'Plaza',v:'Las Ventas · Madrid'},{l:'Temporada',v:'Mayo — Octubre 2026'},{l:'Evento especial',v:'Feria de San Isidro'},{l:'Zonas',v:'Sol · Sombra · Barrera · Palco'}],
     desc:'La plaza de toros más importante del mundo. Acceso a todas las corridas de la temporada, incluyendo la Feria de San Isidro — el evento más difícil de conseguir. Tendidos de sol y sombra, barreras y palcos. El espectáculo más auténtico de Madrid.',
     desc_en:"The world's most important bullring. Access to all season bullfights, including the San Isidro Fair — the hardest tickets to find. Sun and shade stands, barriers and boxes. Madrid's most authentic spectacle.",
