@@ -44,7 +44,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 
 /* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 48px 80px;position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 65% 25%, rgba(201,168,76,.07) 0%, transparent 55%),radial-gradient(ellipse at 20% 75%, rgba(232,52,26,.05) 0%, transparent 50%),linear-gradient(158deg,#1C2027 0%,#252B35 45%,#1A1F28 100%);z-index:0;}
+.hero-bg{position:absolute;inset:0;background-image:url("https://images.pexels.com/photos/1884574/pexels-photo-1884574.jpeg?auto=compress&cs=tinysrgb&w=1400");background-size:cover;background-position:center 30%;z-index:0;}.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(158deg,rgba(28,32,39,0.92) 0%,rgba(37,43,53,0.85) 45%,rgba(26,31,40,0.9) 100%);}
 .hero-lines{position:absolute;inset:0;z-index:0;overflow:hidden;}
 .hero-lines::before{content:'';position:absolute;top:12%;right:-8%;width:58%;height:75%;border:1px solid rgba(255,255,255,.035);border-radius:2px;transform:rotate(-2.5deg);}
 .hero-lines::after{content:'';position:absolute;top:18%;right:0%;width:44%;height:58%;border:1px solid rgba(201,168,76,.07);border-radius:2px;transform:rotate(-.8deg);}
@@ -332,15 +332,15 @@ body.en .es-t{display:none;}body.en .en-t{display:block;}
 
     <!-- ATLETICO -->
     <div class="ec fu" onclick="openEvent('atletico')">
-      <div class="eci" style="background-image:url('https://images.pexels.com/photos/3991976/pexels-photo-3991976.jpeg?auto=compress&cs=tinysrgb&w=800');background-position:center;"></div>
+      <div class="eci" style="background-image:url('https://images.pexels.com/photos/274422/pexels-photo-274422.jpeg?auto=compress&cs=tinysrgb&w=800');background-position:center;"></div>
       <div class="ecg"></div><div class="eco"></div>
       <span class="ecb bf">⚽ Atlético Madrid</span>
       <span class="vb">General · VIP</span>
       <div class="ecc">
-        <div class="eccat es-t">Wanda Metropolitano · Madrid</div>
-        <div class="eccat en-t">Wanda Metropolitano · Madrid</div>
+        <div class="eccat es-t">Riyadh Air Metropolitano · Madrid</div>
+        <div class="eccat en-t">Riyadh Air Metropolitano · Madrid</div>
         <div class="ect">Atlético<br>de Madrid</div>
-        <div class="ecm"><span>🏟 Wanda</span><span>📍 Madrid</span></div>
+        <div class="ecm"><span>🏟 Metropolitano</span><span>📍 Madrid</span></div>
         <div class="pills"><span class="pill">Entrada general</span><span class="pill vipp">Palco VIP</span></div>
         <div class="ecta es-t">Ver disponibilidad →</div>
         <div class="ecta en-t">Check availability →</div>
@@ -388,7 +388,7 @@ body.en .es-t{display:none;}body.en .en-t{display:block;}
   <div class="cat-label fu en-t">🎵 Concerts</div>
   <div class="eg" style="grid-template-columns:1fr;">
     <div class="ec fu" style="aspect-ratio:21/9;" onclick="openEvent('conciertos')">
-      <div class="eci" style="background-image:url('https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1200');background-position:center 35%;"></div>
+      <div class="eci" style="background-image:url('https://images.pexels.com/photos/167636/pexels-photo-167636.jpeg?auto=compress&cs=tinysrgb&w=1200');background-position:center;"></div>
       <div class="ecg"></div><div class="eco"></div>
       <span class="ecb bc">🎵 Conciertos</span>
       <span class="vb">Pista · Gradas · VIP</span>
@@ -416,7 +416,7 @@ body.en .es-t{display:none;}body.en .en-t{display:block;}
       <div class="ecc">
         <div class="eccat es-t">Plaza de Toros Las Ventas · Temporada 2026</div>
         <div class="eccat en-t">Plaza de Toros Las Ventas · Season 2026</div>
-        <div class="ect">Corridas · Las Ventas · San Isidro</div>
+        <div class="ect">Corridas · Plaza de Las Ventas</div>
         <div class="ecm"><span>🏟 Las Ventas</span><span>📍 Madrid</span></div>
         <div class="pills"><span class="pill">Tendido sol</span><span class="pill">Tendido sombra</span><span class="pill vipp">Barrera · Palco</span></div>
         <div class="ecta es-t">Ver disponibilidad →</div>
@@ -569,8 +569,8 @@ const EV={
   atletico:{
     ey:'Atlético de Madrid · Wanda Metropolitano',
     title:'Atlético de Madrid',
-    img:'https://images.pexels.com/photos/3991976/pexels-photo-3991976.jpeg?auto=compress&cs=tinysrgb&w=800',
-    details:[{l:'Estadio',v:'Wanda Metropolitano'},{l:'Ciudad',v:'Madrid, España'},{l:'Competiciones',v:'La Liga · Champions · Copa del Rey'},{l:'Zonas',v:'Fondos · Gradas · Lateral · VIP'}],
+    img:'https://images.pexels.com/photos/274422/pexels-photo-274422.jpeg?auto=compress&cs=tinysrgb&w=800',
+    details:[{l:'Estadio',v:'Riyadh Air Metropolitano'},{l:'Ciudad',v:'Madrid, España'},{l:'Competiciones',v:'La Liga · Champions · Copa del Rey'},{l:'Zonas',v:'Fondos · Gradas · Lateral · VIP'}],
     desc:'Acceso a partidos del Atlético de Madrid en el Wanda Metropolitano. Liga, Champions y Copa del Rey. El derbi madrileño contra Real Madrid siempre disponible. Gradas generales y zonas premium.',
     desc_en:'Access to Atlético de Madrid matches at Wanda Metropolitano. La Liga, Champions and Copa del Rey. The Madrid derby against Real Madrid always available. General stands and premium areas.',
     msg:'Hola, me interesan entradas para Atlético de Madrid. ¿Tenéis disponibilidad?',
@@ -599,20 +599,20 @@ const EV={
   conciertos:{
     ey:'Conciertos · Agotados en taquilla oficial',
     title:'Conciertos agotados',
-    img:'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=800',
+    img:'https://images.pexels.com/photos/167636/pexels-photo-167636.jpeg?auto=compress&cs=tinysrgb&w=800',
     details:[{l:'Recintos',v:'WiZink · Bernabéu · Palau Sant Jordi'},{l:'Ciudades',v:'Madrid · Barcelona · Valencia'},{l:'Zonas',v:'Pista · Gradas · VIP · Front Row'},{l:'Artistas',v:'Consultar disponibilidad'}],
-    desc:'Conciertos agotados en taquilla oficial. Pista, gradas y zonas VIP o front row. Operamos en todos los grandes recintos de España. Quevedo, Bad Bunny, Coldplay, Rosalía y muchos más. Consulta por tu artista favorito.',
-    desc_en:'Sold-out concerts at official box office. Floor, stands and VIP or front row areas. We operate across all major venues in Spain. Quevedo, Bad Bunny, Coldplay, Rosalía and many more. Ask about your favourite artist.',
+    desc:'Conciertos agotados en taquilla oficial. Pista, gradas y zonas VIP o front row. Operamos en todos los grandes recintos de España y Europa. Consulta disponibilidad para cualquier artista o festival.',
+    desc_en:'Sold-out concerts at official box office. Floor, stands and VIP or front row areas. We operate across all major venues in Spain and Europe. Ask about availability for any artist or festival.',
     msg:'Hola, busco entradas para un concierto agotado. ¿Podéis ayudarme?',
     msg_en:"Hi, I'm looking for sold-out concert tickets. Can you help me?"
   },
   toros:{
     ey:'Tauromaquia · Plaza de Toros Las Ventas',
-    title:'Corridas · Las Ventas · San Isidro',
+    title:'Corridas · Plaza de Las Ventas',
     img:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Corrida_de_toros.jpg/1280px-Corrida_de_toros.jpg',
     details:[{l:'Plaza',v:'Las Ventas · Madrid'},{l:'Temporada',v:'Mayo — Octubre 2026'},{l:'Evento especial',v:'Feria de San Isidro'},{l:'Zonas',v:'Sol · Sombra · Barrera · Palco'}],
-    desc:'La plaza de toros más importante del mundo. Acceso a todas las corridas de la temporada, incluyendo la Feria de San Isidro — el evento más difícil de conseguir. Tendidos de sol y sombra, barreras y palcos. El espectáculo más auténtico de Madrid.',
-    desc_en:"The world's most important bullring. Access to all season bullfights, including the San Isidro Fair — the hardest tickets to find. Sun and shade stands, barriers and boxes. Madrid's most authentic spectacle.",
+    desc:'La plaza de toros más importante del mundo. Acceso a todas las corridas de la temporada. Tendidos de sol y sombra, barreras y palcos para los mejores eventos taurinos del año. El espectáculo más auténtico de Madrid.',
+    desc_en:"The world's most important bullring. Access to all season bullfights. Sun and shade stands, barriers and boxes for the best bullfighting events of the year. Madrid's most authentic spectacle.",
     msg:'Hola, me interesan entradas para Las Ventas. ¿Tenéis disponibilidad?',
     msg_en:"Hi, I'm interested in Las Ventas tickets. Do you have availability?"
   }
